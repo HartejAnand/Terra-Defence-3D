@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Shooting Game in Virtual Reality</title>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+  <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+  <!--Local Scripts-->  
+  <script src="./shoot.js"></script>
+  <script src="./gameObjects.js"></script>
+  <script src="./playerMovement.js"></script>
+  <script src="./enemyShoot.js"></script>
+
+</head>
+
+<body>
+  <a-scene id="scene" inspector-plugin-recast>
+
+    <!--Assets-->
+    <a-assets>
+      <a-asset-item id="shooter" src="./models/Player 1.glb"></a-asset-item>
+      <a-asset-item id="shooter2" src="./models/Player 2.glb"></a-asset-item>
+      <a-asset-item id="tank" src="./models/Alien eyes.glb"></a-asset-item>
+
+    </a-assets>
+
+    <!--A-Frame Environment-->
+    <a-entity id="environment" environment="preset: forest; skyType:gradient; lighting:point">
+    </a-entity>
+
+    <!--Light-->
+    <a-entity light="type: ambient; color: red; intensity: 1.75"></a-entity>
+    <a-entity light="type: directional; color: black; intensity: 0.51" position="0 1 0"></a-entity>
+
+    <a-entity id="camera-rig" movement-controls="speed: 0.2; constrainToNavMesh: true" position="0 1 2">
+      <!--Camera and Cursor-->
+      <a-entity id="camera" camera position="0 1.6 0" look-controls="pointerLockEnabled: true">
+        <a-entity id="weapon" gltf-model="#shooter" 
+          position="0 -4.4 3" rotation="0 180 0" scale="0.35 1 1"
+          body="type: static; mass: 5; shape: none;" 
+          shape="shape: sphere; radius: 5; offset: 0 3 0;"
+          player-movement>
+        </a-entity>
+        <a-cursor></a-cursor>
+
+      </a-entity>
+
+
+    <!--Bullets-->
+    <a-entity bullets></a-entity>
+    <a-entity enemy-bullets></a-entity>
+
+    <!--Game Objects-->
+    <a-entity  ></a-entity>
+
+    <!--Ground-->
+    <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" color="#FBF2D4"
+      static-body visible="false">
+    </a-plane>
+
+    <!--Enemy-->
+    <a-entity class="enemy" id="enemy1" rotation="0 90 0" gltf-model="#tank" position="-10 0 -15"
+      scale="0.015 0.015 0.015" animation-mixer static-body
+      animation="property: position; to: 10 0 -15; dur: 20000; easing: linear; loop: true; dir:alternate">
+
+    </a-entity>
+
+    <a-entity class="enemy" id="enemy2" rotation="0 90 0" gltf-model="#tank" position="-50 0 -40"
+      scale="0.015 0.015 0.015" animation-mixer static-body
+      animation="property: position; to: 10 0 -40; dur: 20000; easing: linear; loop: true; dir:alternate">
+    </a-entity>
+
+  </a-scene>
+</body>
+
+</html>
