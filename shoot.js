@@ -4,7 +4,7 @@ AFRAME.registerComponent("bullets", {
   },
   shootBullet: function () {
     window.addEventListener("keydown", (e) => {
-      if (e.key === "q") {
+      if (e.key === "q" || mouseIsPressed) {
         var bullet = document.createElement("a-entity");
 
         bullet.setAttribute("geometry", {
