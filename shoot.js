@@ -4,7 +4,8 @@ AFRAME.registerComponent("bullets", {
   },
   shootBullet: function () {
     window.addEventListener("keydown", (e) => {
-      if (e.key === "q" || mouseIsPressed) {
+      if (e.key === "q") {
+      //  document.querySelector('p').addEventListener('click', function (evt) {
         var bullet = document.createElement("a-entity");
 
         bullet.setAttribute("geometry", {
@@ -19,7 +20,7 @@ AFRAME.registerComponent("bullets", {
 
         bullet.setAttribute("position", {
           x: pos.x,
-          y: pos.y,
+          y: pos.y+1,
           z: pos.z,
         });
 
@@ -47,7 +48,7 @@ AFRAME.registerComponent("bullets", {
 
         //shooting sound
         this.shootSound();
-      }
+      }//);
     });
   },
  removeBullet: function (e) {

@@ -32,7 +32,7 @@ AFRAME.registerComponent("enemy-bullets", {
             var enemyBullet1 = document.createElement("a-entity");
             enemyBullet1.setAttribute("geometry", {
                 primitive: "sphere",
-                radius: 3,
+                radius: 2,
             });
 
             enemyBullet1.setAttribute("material", "color", "rgb(0, 100, 0)");
@@ -97,7 +97,7 @@ AFRAME.registerComponent("enemy-bullets", {
                         //show text
                         var txt = document.querySelector("#over");
                         txt.setAttribute("visible", true);
-                        //remove tanks
+                        //remove UFO
                         var tankEl = document.querySelectorAll(".enemy");
                         for(var i=0; i<tankEl.length; i++){
                             scene.removeChild(tankEl[i]);

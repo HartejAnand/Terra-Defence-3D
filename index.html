@@ -36,9 +36,8 @@
     </a-entity>-->
 
     <!--Light-->
-    <a-entity light="type: ambient; color: white; intensity: 1"></a-entity>
-    <a-entity light="type: ambient; color: red; intensity: 0.1"></a-entity>
-    <a-entity light="type: directional; color: black; intensity: 0.1" position="0 1 0"></a-entity>
+    <a-entity light="type: ambient; color: white; intensity: 0.7"></a-entity>
+    <a-entity light="type: directional; castShadow:true; color: red; intensity: 1" position="1 1 1"></a-entity>
 
     <a-entity id="camera-rig" movement-controls="speed: 0.2; constrainToNavMesh: true" position="0 1 2">
       <!--Camera and Cursor-->
@@ -49,9 +48,10 @@
           shape="shape: sphere; radius: 5; offset: 0 3 0;"
           player-movement>
         </a-entity>
-        <a-cursor></a-cursor>
+        <a-cursor color="red"></a-cursor>
 
       </a-entity>
+    </a-entity>
 
 
     <!--Bullets-->
@@ -62,7 +62,7 @@
     <a-entity  ></a-entity>
 
     <!--Ground-->
-    <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" color="#FBF2D4"
+    <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" src="images/land.jpg"
       static-body visible="true">
     </a-plane>
 
@@ -70,7 +70,6 @@
     <a-entity class="enemy" id="enemy1" rotation="0 90 0" gltf-model="#tank" position="-10 10 -15"
       scale="0.015 0.015 0.015" animation-mixer static-body
       animation="property: position; to: 10 0 -15; dur: 20000; easing: linear; loop: true; dir:alternate">
-
     </a-entity>
 
     <a-entity class="enemy" id="enemy2" rotation="0 90 0" gltf-model="#tank" position="-50 10 -40"
