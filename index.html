@@ -9,7 +9,8 @@
   <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
   <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-
+  <script src="https://unpkg.com/aframe-spe-particles-component@^1.0.4/dist/aframe-spe-particles-component.min.js"></script>
+ 
   <!--Local Scripts-->  
   <script src="./shoot.js"></script>
   <script src="./gameObjects.js"></script>
@@ -60,21 +61,41 @@
 
     <!--Game Objects-->
     <a-entity  ></a-entity>
+    
 
     <!--Ground-->
-    <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" src="images/land.jpg"
+    <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" src="land.png"
       static-body visible="true">
     </a-plane>
 
     <!--Enemy-->
-    <a-entity class="enemy" id="enemy1" rotation="0 90 0" gltf-model="#tank" position="-10 10 -15"
-      scale="0.015 0.015 0.015" animation-mixer static-body
-      animation="property: position; to: 10 0 -15; dur: 20000; easing: linear; loop: true; dir:alternate">
-    </a-entity>
+      <a-entity class="enemy" id="enemy1" rotation="0 90 0" gltf-model="#tank" position="-10 10 -15"
+        scale="0.015 0.015 0.015" animation-mixer static-body
+        animation="property: rotation; to: 5 3600 3; delay: Math.random()*100; dur: 10000; easing: linear; loop: true; dir: alternate"
+        >
+        <a-entity 
+      position="-10 10 -15 " 
+      spe-particles="        
+          color: red, orange, yellow; 
+          distribution: sphere; 
+          randomize-velocity: true;
+          radius: 1;
+          particle-count: 800; 
+          velocity: 1; 
+          velocity-spread: 15; 
+          drag: 1; 
+          max-age: 3;
+          duration: -1,
+          blending: additive;
+          active-multiplier: 100; 
+          size: 1, 1, 1, 0">
+      </a-entity>
+      </a-entity>
+      
 
     <a-entity class="enemy" id="enemy2" rotation="0 90 0" gltf-model="#tank" position="-50 10 -40"
       scale="0.015 0.015 0.015" animation-mixer static-body
-      animation="property: position; to: 10 0 -40; dur: 20000; easing: linear; loop: true; dir:alternate">
+      animation="property: position; to: 10 10 -40; dur: 20000; easing: linear; loop: true; dir:alternate">
     </a-entity>
 
   </a-scene>

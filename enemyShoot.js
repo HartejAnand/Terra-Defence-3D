@@ -29,24 +29,9 @@ AFRAME.registerComponent("enemy-bullets", {
             var scene = document.querySelector("#scene");
             scene.appendChild(enemyBullet);
 
-            var enemyBullet1 = document.createElement("a-entity");
-            enemyBullet1.setAttribute("geometry", {
-                primitive: "sphere",
-                radius: 2,
-            });
-
-            enemyBullet1.setAttribute("material", "color", "rgb(0, 100, 0)");
-
             var position = els[i].getAttribute("position")
 
-            enemyBullet1.setAttribute("position", {
-                x: position.x + 1.5,
-                y: position.y + 3.5,
-                z: position.z,
-            });
-
             var scene = document.querySelector("#scene");
-            scene.appendChild(enemyBullet1);
 
             //Three.js Vector Variables
             var position1=new THREE.Vector3();
@@ -65,17 +50,11 @@ AFRAME.registerComponent("enemy-bullets", {
             direction.subVectors(position1, position2).normalize();
 
             enemyBullet.setAttribute("velocity", direction.multiplyScalar(10));
-            enemyBullet1.setAttribute("velocity", direction.multiplyScalar(0.8));
 
             //Set dynamic-body attribute
             enemyBullet.setAttribute("dynamic-body", {
                 shape: "sphere",
                 mass: "0",
-            });
-
-            enemyBullet1.setAttribute("dynamic-body", {
-                shape: "sphere",
-                mass: "1",
             });
 
             //Get text attribute
